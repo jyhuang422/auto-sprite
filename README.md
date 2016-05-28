@@ -24,7 +24,7 @@ https://icons8.com/web-app/category/all/Very-Basic
 別のケースを比較します
 
 | imgName         | cssName           | sprite url  |
-| --------------- |:-----------------:| -----------:|
+|:---------------:|:-----------------:|:-----------:|
 | demo_sprite.png | demo_sprite.less  | demo_sprite.png |
 | sprite/demo_sprite.png | less/demo_sprite.less  | ../../sprite/demo_sprite.png |
 
