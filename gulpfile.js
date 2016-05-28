@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var buffer = require('vinyl-buffer');
 var imagemin = require('gulp-imagemin');
-
 var spritesmith = require('gulp.spritesmith');
 
 gulp.task('default', ['sprite'], function() {
