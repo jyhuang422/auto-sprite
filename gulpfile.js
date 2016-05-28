@@ -12,7 +12,6 @@ gulp.task('sprite', function () {
   // Generate our spritesheet
   var spriteData = gulp.src('icon/*.png').pipe(spritesmith({
     algorithm: 'binary-tree',
-    //padding: 2,
     imgName: 'sprite/demo_sprite.png',
     cssName: 'assets/less/demo_sprite.less'
   }));
