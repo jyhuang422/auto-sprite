@@ -30,7 +30,7 @@ https://icons8.com/web-app/category/all/Very-Basic
 
 
 gulpのコード
-```gulp
+```javascript
 var gulp = require('gulp');
 var buffer = require('vinyl-buffer');
 var imagemin = require('gulp-imagemin');
