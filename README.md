@@ -71,7 +71,7 @@ lessのコード
 そうすれば、gulp.spritesmithから生成されたLessの変数も調整必要があります。
 > つまり、background-sizeを使う時、関数.sprites(@spritesheet-sprites)を使用できません
 
-この時、以下のLessコード使います
+この時、以下のLessコード使って、background-positionを計算します
 ```LESS
 /* decide the width of icon */ 
 @icon_width: 30px;
