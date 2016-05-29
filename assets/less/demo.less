@@ -10,7 +10,7 @@
 @icon_width: 30px;
 
 
-a[class^="icon-"] {
+[class^="icon-"] {
   display: inline-block;
   text-align: center;
   background-color: #ddd;
@@ -26,7 +26,7 @@ a[class^="icon-"] {
   .loop_sprite((@list_count - 1));
   @item: extract(@spritesheet-sprites, @list_count);
   @name: e(extract(@item, 10));
-  a.@{name} {
+  .@{name} {
     @y: "@{name}-offset-y";
     @x: "@{name}-offset-x";
     @orig_width: "@{name}-width";

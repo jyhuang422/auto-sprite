@@ -82,7 +82,7 @@ lessのコード
   .loop_sprite((@list_count - 1));
   @item: extract(@spritesheet-sprites, @list_count);
   @name: e(extract(@item, 10));
-  a.@{name} {
+  .@{name} {
     @y: "@{name}-offset-y";
     @x: "@{name}-offset-x";
     @orig_width: "@{name}-width";
