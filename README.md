@@ -71,25 +71,43 @@ lessのコード
 そうすれば、gulp.spritesmithから生成されたLessの変数も調整必要があります。
 > つまり、background-sizeを使う時、関数.sprites(@spritesheet-sprites)を使用できません
 
-この時、以下のLessコード使って、background-positionを計算します
+この時、以下のmixin lessコード使って、background-positionとbackground-sizeを計算します
+* mixin
 ```LESS
-/* decide the width of icon */ 
-@icon_width: 30px;
-
-/* calculate the correct position when resizing the original sprite */
-@icon_width_unit: unit(@icon_width);
-.loop_sprite(@list_count) when (@list_count > 0) {
-  .loop_sprite((@list_count - 1));
-  @item: extract(@spritesheet-sprites, @list_count);
+.custom-sprite(@item, @width) {
   @name: e(extract(@item, 10));
+  @icon-width-unit: unit(@width);
   .@{name} {
     @y: "@{name}-offset-y";
     @x: "@{name}-offset-x";
-    @orig_width: "@{name}-width";
-    background-size: unit((@icon_width_unit) * unit(@icon-download-total-width) / unit(@@orig_width) , px) auto;
-    background-position: unit( round(unit(@@x) * @icon_width_unit / unit(@@orig_width)), px) unit( round(unit(@@y) * @icon_width_unit / unit(@@orig_width)), px);
+    @orig-width: "@{name}-width";
+    background-size: unit((@icon-width-unit) * unit(@icon-download-total-width) / unit(@@orig-width) , px) auto;
+    background-position: unit( round(unit(@@x) * @icon-width-unit / unit(@@orig-width)), px) unit( round(unit(@@y) * @icon-width-unit / unit(@@orig-width)), px);
   }
 }
+.custom-sprites(@spritesheet-sprites, @width) {
+  .loop_sprite(@list-count) when (@list-count > 0) {
+    .loop_sprite((@list-count - 1));
+    @item: extract(@spritesheet-sprites, @list-count);
+    .custom-sprite(@item, @width);
+  }
+  .loop_sprite(length(@spritesheet-sprites));
+}
+```
 
-.loop_sprite(length(@spritesheet-sprites));
+* mixinを使って、iconの様式を調整しあす
+```less
+@icon-width: 30px;
+
+[class^="icon-"] {
+  display: inline-block;
+  text-align: center;
+  background-color: #ddd;
+  width: @icon-width;
+  height: @icon-width;
+  background-image: url(@spritesheet-image);
+  background-repeat: no-repeat;
+}
+
+.custom-sprites(@spritesheet-sprites, @icon-width);
 ```

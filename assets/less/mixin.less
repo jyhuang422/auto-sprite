@@ -1,0 +1,20 @@
+/* calculate the correct position when resizing the original sprite */
+.custom-sprite(@item, @width) {
+  @name: e(extract(@item, 10));
+  @icon-width-unit: unit(@width);
+  .@{name} {
+    @y: "@{name}-offset-y";
+    @x: "@{name}-offset-x";
+    @orig-width: "@{name}-width";
+    background-size: unit((@icon-width-unit) * unit(@icon-download-total-width) / unit(@@orig-width) , px) auto;
+    background-position: unit( round(unit(@@x) * @icon-width-unit / unit(@@orig-width)), px) unit( round(unit(@@y) * @icon-width-unit / unit(@@orig-width)), px);
+  }
+}
+.custom-sprites(@spritesheet-sprites, @width) {
+  .loop_sprite(@list-count) when (@list-count > 0) {
+    .loop_sprite((@list-count - 1));
+    @item: extract(@spritesheet-sprites, @list-count);
+    .custom-sprite(@item, @width);
+  }
+  .loop_sprite(length(@spritesheet-sprites));
+}
